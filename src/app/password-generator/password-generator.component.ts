@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import { Clipboard } from "@angular/cdk/clipboard";
 import {ToastService} from "../service/toast.service";
+import {ContainerBoxComponent} from "../container-box/container-box.component";
 
 @Component({
   selector: 'app-password-generator',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ContainerBoxComponent],
   templateUrl: './password-generator.component.html',
   styleUrl: './password-generator.component.css',
 })

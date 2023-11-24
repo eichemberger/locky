@@ -1,0 +1,57 @@
+<app-container-box>
+  <div class="mb-10">
+    <h2 class="text-xl mb-4">Encrypt with bcrypt</h2>
+    <p class="text-xs">Uses salt rounds of 10</p>
+  </div>
+
+  <fieldset class="flex flex-col gap-10">
+    <div data-v-ce5f28f4="">
+      <label
+        for="rawPassword"
+        class="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
+        <span class="text-xs font-medium text-gray-100"> Password </span>
+        <input
+          type="text"
+          id="rawPassword"
+          [(ngModel)]="rawPassword"
+          (keydown.enter)="encryptPassword()"
+          placeholder="Your secure password"
+          class="mt-1 w-full text-gray-50 bg-gray-900 border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+        >
+      </label>
+    </div>
+    <div class="relative">
+      <label for="password" class="sr-only"> Encrypted Password </label>
+      <input
+        readonly
+        [(ngModel)]="encryptedPassword"
+        type="text"
+        id="password"
+        placeholder="An encrypted password"
+        class="mt-1 w-11/12 border pt-3 pb-3 pl-4 bg-gray-900 rounded-lg focus:border-indigo-400 focus:outline-none focus:ring-0 sm:text-sm text-gray-200"
+      >
+      <span class="absolute inset-y-7 end-0 grid w-10 place-content-center">
+        <button type="button" class="text-gray-600 hover:text-gray-700" (click)="copyPasswordToClipboard()">
+          <span class="sr-only">Copy</span>
+          <img
+            src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3csvg%20version='1.1'%20id='Layer_1'%20xmlns='http://www.w3.org/2000/svg'%20xmlns:xlink='http://www.w3.org/1999/xlink'%20x='0px'%20y='0px'%20viewBox='0%200%20115.77%20122.88'%20style='enable-background:new%200%200%20115.77%20122.88'%20xml:space='preserve'%3e%3cstyle%20type='text/css'%3e.st0{fill-rule:evenodd;clip-rule:evenodd;}%3c/style%3e%3cg%3e%3cpath%20class='st0'%20d='M89.62,13.96v7.73h12.19h0.01v0.02c3.85,0.01,7.34,1.57,9.86,4.1c2.5,2.51,4.06,5.98,4.07,9.82h0.02v0.02%20v73.27v0.01h-0.02c-0.01,3.84-1.57,7.33-4.1,9.86c-2.51,2.5-5.98,4.06-9.82,4.07v0.02h-0.02h-61.7H40.1v-0.02%20c-3.84-0.01-7.34-1.57-9.86-4.1c-2.5-2.51-4.06-5.98-4.07-9.82h-0.02v-0.02V92.51H13.96h-0.01v-0.02c-3.84-0.01-7.34-1.57-9.86-4.1%20c-2.5-2.51-4.06-5.98-4.07-9.82H0v-0.02V13.96v-0.01h0.02c0.01-3.85,1.58-7.34,4.1-9.86c2.51-2.5,5.98-4.06,9.82-4.07V0h0.02h61.7%20h0.01v0.02c3.85,0.01,7.34,1.57,9.86,4.1c2.5,2.51,4.06,5.98,4.07,9.82h0.02V13.96L89.62,13.96z%20M79.04,21.69v-7.73v-0.02h0.02%20c0-0.91-0.39-1.75-1.01-2.37c-0.61-0.61-1.46-1-2.37-1v0.02h-0.01h-61.7h-0.02v-0.02c-0.91,0-1.75,0.39-2.37,1.01%20c-0.61,0.61-1,1.46-1,2.37h0.02v0.01v64.59v0.02h-0.02c0,0.91,0.39,1.75,1.01,2.37c0.61,0.61,1.46,1,2.37,1v-0.02h0.01h12.19V35.65%20v-0.01h0.02c0.01-3.85,1.58-7.34,4.1-9.86c2.51-2.5,5.98-4.06,9.82-4.07v-0.02h0.02H79.04L79.04,21.69z%20M105.18,108.92V35.65v-0.02%20h0.02c0-0.91-0.39-1.75-1.01-2.37c-0.61-0.61-1.46-1-2.37-1v0.02h-0.01h-61.7h-0.02v-0.02c-0.91,0-1.75,0.39-2.37,1.01%20c-0.61,0.61-1,1.46-1,2.37h0.02v0.01v73.27v0.02h-0.02c0,0.91,0.39,1.75,1.01,2.37c0.61,0.61,1.46,1,2.37,1v-0.02h0.01h61.7h0.02%20v0.02c0.91,0,1.75-0.39,2.37-1.01c0.61-0.61,1-1.46,1-2.37h-0.02V108.92L105.18,108.92z'/%3e%3c/g%3e%3c/svg%3e"
+             class="w-10/12 ml-4 bg-gray-200 rounded p-2"
+             alt="Copy icon"
+          >
+        </button>
+      </span>
+    </div>
+  </fieldset>
+
+  <div class="mx-auto mt-10">
+    <a
+      class="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-indigo-800 hover:border-indigo-800 focus:outline-none focus:ring active:text-indigo-500"
+      href="#"
+      onclick="return false;"
+      (click)="encryptPassword()"
+    >
+      Encrypt
+    </a>
+  </div>
+
+</app-container-box>
