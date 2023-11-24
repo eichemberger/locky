@@ -15,7 +15,6 @@ jobs:
       CF_DIST_ID: E2IM9KF6CQIU9O
       ROLE: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/CICDS3Portfolio
       BUCKET: locky.ar
-      BUILD_FOLDER: ./dist/locky/browser
     steps:
       - uses: actions/checkout@v4
 
@@ -35,11 +34,8 @@ jobs:
       - name: build
         run: npm run build
 
-      - name: go to build folder
-        run: cd ${{ env.BUILD_FOLDER }}
-
       - name: Deploy to AWS S3
-        run: aws s3 sync . s3://${{ env.BUCKET }} --delete
+        run: aws s3 sync ./dist/locky/browser s3://${{ env.BUCKET }} --delete
 
       - name: Invalidate CloudFront
         run: aws cloudfront create-invalidation --distribution-id ${{ env.CF_DIST_ID }} --paths /index.html
