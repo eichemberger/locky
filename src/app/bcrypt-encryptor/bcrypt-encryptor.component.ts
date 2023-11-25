@@ -33,7 +33,7 @@ export class BcryptEncryptorComponent {
   copyPasswordToClipboard(): void {
     if (this.rawPassword.trim().length === 0) return;
 
-    this.clipboard.copy(this.rawPassword);
+    this.clipboard.copy(this.encryptedPassword);
     this.toastService.showToast('Password copied to clipboard');
   }
 
