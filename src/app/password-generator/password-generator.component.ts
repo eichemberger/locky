@@ -4,6 +4,7 @@ import {FormsModule} from "@angular/forms";
 import { Clipboard } from "@angular/cdk/clipboard";
 import {ToastService} from "../service/toast.service";
 import {ContainerBoxComponent} from "../container-box/container-box.component";
+import posthog from 'posthog-js'
 
 @Component({
   selector: 'app-password-generator',
@@ -30,10 +31,13 @@ export class PasswordGeneratorComponent implements OnInit {
   }
 
   createNewPassword(): void {
+    posthog.capture('password generated', { property: '1' }); 
     this.securePassword = this.generatePassword();
   }
 
   copyPasswordToClipboard(): void {
+    posthog.capture('password copied', { property: '1' }); 
+
     this.clipboard.copy(this.securePassword);
     this.toastService.showToast('Password copied to clipboard');
   }

@@ -6,6 +6,7 @@ import bcrypt from "bcryptjs";
 import {FormsModule} from "@angular/forms";
 import {ToastService} from "../service/toast.service";
 import {Clipboard} from "@angular/cdk/clipboard";
+import posthog from 'posthog-js'; 
 
 @Component({
   selector: 'app-bcrypt-encryptor',
@@ -26,12 +27,16 @@ export class BcryptEncryptorComponent {
   }
 
   encryptPassword(): void {
+    posthog.capture('password encrypted', { property: '1' }); 
+
     const salt = bcrypt.genSaltSync(10);
     this.encryptedPassword = bcrypt.hashSync(this.rawPassword.trim(), salt);
   }
 
   copyPasswordToClipboard(): void {
     if (this.rawPassword.trim().length === 0) return;
+
+    posthog.capture('password encrypted copied', { property: '1' }); 
 
     this.clipboard.copy(this.encryptedPassword);
     this.toastService.showToast('Password copied to clipboard');
