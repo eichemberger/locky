@@ -31,12 +31,12 @@ export class PasswordGeneratorComponent implements OnInit {
   }
 
   createNewPassword(): void {
-    posthog.capture('password generated', { property: '1' }); 
+    posthog.capture('password generated'); 
     this.securePassword = this.generatePassword();
   }
 
   copyPasswordToClipboard(): void {
-    posthog.capture('password copied', { property: '1' }); 
+    posthog.capture('password copied'); 
 
     this.clipboard.copy(this.securePassword);
     this.toastService.showToast('Password copied to clipboard');
