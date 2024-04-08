@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^17.0.0",
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
+    "aws-rum-web": "^1.17.1",
     "bcryptjs": "^2.4.3",
     "posthog-js": "^1.93.6",
     "rxjs": "~7.8.0",
